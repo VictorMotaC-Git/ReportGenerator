@@ -1,0 +1,41 @@
+﻿@page "/report"
+@inject HttpClient Http
+@inject IJSRuntime JS
+
+<h3>Relatório de Usuários</h3>
+
+<label>Quantidade de usuários:</label>
+<input type="number" @bind="quantidade" min="1" class="form-control mb-2" />
+
+<button class="btn btn-primary me-2" @onclick="GerarPdf">Gerar PDF</button>
+<button class="btn btn-secondary" @onclick="GerarCsv">Gerar CSV</button>
+<button class="btn btn-success me-2" @onclick="GerarExcel">Gerar Excel</button>
+
+@code {
+    private int quantidade = 10;
+
+    private async Task GerarPdf()
+    {
+        var url = $"https://localhost:7054/api/report/pdf?quantidade={quantidade}";
+        var bytes = await Http.GetByteArrayAsync(url);
+        var base64 = Convert.ToBase64String(bytes); 
+        await JS.InvokeVoidAsync("downloadFile", "relatorioPDF.pdf", "application/pdf", base64);
+    }
+
+    private async Task GerarCsv()
+    {
+        var url = $"https://localhost:7054/api/report/csv?quantidade={quantidade}";
+        var bytes = await Http.GetByteArrayAsync(url);
+        var base64 = Convert.ToBase64String(bytes);
+        await JS.InvokeVoidAsync("downloadFile", "relatorioCSV.csv", "text/csv", base64);
+    }
+
+    private async Task GerarExcel()
+    {
+        var url = $"https://localhost:7054/api/report/excel?quantidade={quantidade}";
+        var bytes = await Http.GetByteArrayAsync(url);
+        var base64 = Convert.ToBase64String(bytes);
+        await JS.InvokeVoidAsync("downloadFile", "relatorioUsuarios.xlsx",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", base64);
+    }
+}
