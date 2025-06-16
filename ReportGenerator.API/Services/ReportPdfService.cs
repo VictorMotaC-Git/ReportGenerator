@@ -17,7 +17,7 @@ public class ReportPdfService : IReportPdfService
     {
         QuestPDF.Settings.License = LicenseType.Community;
 
-        var logoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "imgm", "logo.png");
+        var logoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img", "logo.png");
         var logoBytes = File.Exists(logoPath) ? File.ReadAllBytes(logoPath) : null;
 
         var document = Document.Create(container =>
@@ -30,13 +30,13 @@ public class ReportPdfService : IReportPdfService
 
                 page.Header().Row(row =>
                 {
-                    if (logoBytes is not null)
-                    {
-                        row.ConstantItem(80).Image(logoBytes).FitHeight();
-                    }
-
                     row.RelativeItem().Column(col =>
                     {
+                        if (logoBytes is not null)
+                        {
+                            row.ConstantItem(80).Image(logoBytes).FitWidth();
+                        }
+
                         col.Item().Text("Relatório de Usuários").FontSize(18).Bold().FontColor(Colors.Blue.Medium);
                         col.Item().Text($"Gerado em: {DateTime.Now:dd/MM/yyyy HH:mm}").FontSize(10).Italic();
                     });
