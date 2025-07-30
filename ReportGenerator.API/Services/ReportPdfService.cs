@@ -1,8 +1,8 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
-using ReportGenerator.API.Models;
-using System.IO;
+using ReportGenerator.Domain.Entities;
+
 
 namespace ReportGenerator.API.Services;
 

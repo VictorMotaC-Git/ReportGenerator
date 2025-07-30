@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ReportGenerator.API.Services;
+using ReportGenerator.Infrastructure.Repositories;
 
 namespace ReportGenerator.API.Controllers;
 
@@ -11,13 +12,15 @@ public class ReportController : ControllerBase
     private readonly IReportPdfService _pdfService;
     private readonly IReportCsvService _csvService;
     private readonly IReportExcelService _excelService;
+    private readonly IUserRepository _userRepository;
 
-    public ReportController(IUserService userService, IReportPdfService pdfService, IReportCsvService csvService, IReportExcelService excelService)
+    public ReportController(IUserService userService, IReportPdfService pdfService, IReportCsvService csvService, IReportExcelService excelService, IUserRepository userRepository)
     {
         _userService = userService;
         _pdfService = pdfService;
         _csvService = csvService;
         _excelService = excelService;
+        _userRepository = userRepository;
     }
 
     [HttpGet("pdf")]
@@ -44,5 +47,23 @@ public class ReportController : ControllerBase
         return File(excelBytes,
                     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                     "relatorioUsuarios.xlsx");
+    }
+
+    [HttpGet("pdfDataBase")]
+    public async Task<IActionResult> GetPdfDataBase([FromQuery] int quantidade)
+    {
+        var users = await _userRepository.GetUsersAsync(quantidade);
+
+        var pdfBytes = _pdfService.Generate(users);
+        return File(pdfBytes, "application/pdf", "relatorio.pdf");
+    }
+
+    [HttpGet("csvDataBase")]
+    public async Task<IActionResult> GetCsvDataBase([FromQuery] int quantidade)
+    {
+        var users = await _userRepository.GetUsersAsync(quantidade);
+
+        var csvBytes = _csvService.Generate(users);
+        return File(csvBytes, "text/csv", "relatorio.csv");
     }
 }

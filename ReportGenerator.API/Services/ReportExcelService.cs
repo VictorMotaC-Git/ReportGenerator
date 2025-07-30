@@ -1,5 +1,5 @@
 ﻿using ClosedXML.Excel;
-using ReportGenerator.API.Models;
+using ReportGenerator.Domain.Entities;
 
 namespace ReportGenerator.API.Services;
 

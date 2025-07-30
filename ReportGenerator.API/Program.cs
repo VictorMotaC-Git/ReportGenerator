@@ -1,6 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using QuestPDF.Infrastructure;
 using ReportGenerator.API.Services;
+using ReportGenerator.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,10 @@ builder.Services.AddCors(options =>
     });
 });
 
+var oracleConnection = builder.Configuration.GetConnectionString("OracleConnection")
+    ?? throw new InvalidOperationException("A string de conexão 'OracleConnection' não foi encontrada.");
+
+builder.Services.AddInfrastructure(oracleConnection);
 
 var app = builder.Build();
 

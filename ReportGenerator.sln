@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportGenerator.API", "Repo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportGenerator.Client", "ReportGenerator.Client\ReportGenerator.Client.csproj", "{EDB47DFC-1A52-450B-BA2E-0D7308EECC5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportGenerator.Infrastructure", "ReportGenerator.Infrastructure\ReportGenerator.Infrastructure.csproj", "{47411EFC-8ECA-4B5C-AA1F-0E291E32B0D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportGenerator.Domain", "ReportGenerator.Domain\ReportGenerator.Domain.csproj", "{27BF6174-C297-4513-86BC-9F1D7F5F5AF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +25,19 @@ Global
 		{EDB47DFC-1A52-450B-BA2E-0D7308EECC5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDB47DFC-1A52-450B-BA2E-0D7308EECC5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDB47DFC-1A52-450B-BA2E-0D7308EECC5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47411EFC-8ECA-4B5C-AA1F-0E291E32B0D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47411EFC-8ECA-4B5C-AA1F-0E291E32B0D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47411EFC-8ECA-4B5C-AA1F-0E291E32B0D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47411EFC-8ECA-4B5C-AA1F-0E291E32B0D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27BF6174-C297-4513-86BC-9F1D7F5F5AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27BF6174-C297-4513-86BC-9F1D7F5F5AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27BF6174-C297-4513-86BC-9F1D7F5F5AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27BF6174-C297-4513-86BC-9F1D7F5F5AF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9BFE4399-AA7A-4C61-B7E6-95B77E00E5F7}
 	EndGlobalSection
 EndGlobal

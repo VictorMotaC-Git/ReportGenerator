@@ -1,6 +1,6 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
-using ReportGenerator.API.Models;
+using ReportGenerator.Domain.Entities;
 using System.Globalization;
 using System.Text;
 
